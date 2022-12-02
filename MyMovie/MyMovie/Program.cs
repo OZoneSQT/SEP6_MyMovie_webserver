@@ -6,11 +6,17 @@ var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 var configuration = builder.Configuration;
 
-services.AddAuthentication().AddGoogle(googleOptions =>
+services.AddAuthentication()
+    .AddGoogle(googleOptions =>
 {
     googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
     googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
-});
+})
+    .AddTwitter(twitterOptions =>
+    {
+        twitterOptions.ConsumerKey = configuration["Authentication:Twitter:ConsumerAPIKey"];
+        twitterOptions.ConsumerSecret = configuration["Authentication:Twitter:ConsumerSecret"];
+    });
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
