@@ -16,25 +16,13 @@ services.AddAuthentication()
     {
         twitterOptions.ConsumerKey = configuration["Authentication:Twitter:ConsumerAPIKey"];
         twitterOptions.ConsumerSecret = configuration["Authentication:Twitter:ConsumerSecret"];
-    });
-
-var builder = WebApplication.CreateBuilder(args);
-var services = builder.Services;
-var configuration = builder.Configuration;
-
-services.AddAuthentication().AddFacebook(facebookOptions =>
-{
+    })
+    .AddFacebook(facebookOptions =>
+    {
     facebookOptions.AppId = configuration["Authentication:Facebook:AppId"];
     facebookOptions.AppSecret = configuration["Authentication:Facebook:AppSecret"];
-});
+    });
 
-var connectionString = configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
