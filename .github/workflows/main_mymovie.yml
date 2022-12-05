@@ -13,10 +13,10 @@ env:
   #AZURE_WEBAPP_PACKAGE_PATH: './MyMovie/MyMovie'  # set this to the path to your web app project, defaults to the repository root
   DOTNET_VERSION: '6.0.x'                          # set this to the dotnet version to use (e.g. '2.1.x', '3.1.x', '5.0.x')
   AZURE_WEBAPP_PUBLISH_PROFILE: secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0C469F10A76E4193A614CEB6DEA2D51D # Includes GitHub secret
-  Authentication:Twitter:ConsumerAPIKey: ${{ secrets.GOOGLE_CLIENTID }}                                 # Includes GitHub secret
-  Authentication:Google:ClientSecret: ${{ secrets.GOOGLE_CLIENTSECRET }}                                # Includes GitHub secret
-  Authentication:Google:ClientId: ${{ secrets.GOOGLE_CONSUMERSECRET }}                                  # Includes GitHub secret
-  Authentication:Twitter:ConsumerSecret: ${{ secrets.TWITTER_CONSUMERAPIKEY }}                          # Includes GitHub secret
+  #Authentication:Twitter:ConsumerAPIKey: ${{ secrets.GOOGLE_CLIENTID }}                                 # Includes GitHub secret
+  #Authentication:Google:ClientSecret: ${{ secrets.GOOGLE_CLIENTSECRET }}                                # Includes GitHub secret
+  #Authentication:Google:ClientId: ${{ secrets.GOOGLE_CONSUMERSECRET }}                                  # Includes GitHub secret
+  #Authentication:Twitter:ConsumerSecret: ${{ secrets.TWITTER_CONSUMERAPIKEY }}                          # Includes GitHub secret
 
 jobs:
   build-and-deploy:
@@ -34,7 +34,7 @@ jobs:
           dotnet-version: ${{ env.DOTNET_VERSION }} 
       
       # Run dotnet setup
-      - name: dotnet get dependencies
+      - name: dotnet dependencies
         run: dotnet restore
         
       # Run dotnet build
