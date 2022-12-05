@@ -39,7 +39,7 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.0
     
     - name: Run MSBuild
-      run: msbuild ${{ AZURE_WEBAPP_SOLUTION_PATH }}
+      run: msbuild ${{ env.AZURE_WEBAPP_SOLUTION_PATH }}
        
     - name: 'Run Azure webapp deploy action using publish profile credentials'
       uses: azure/webapps-deploy@v2
