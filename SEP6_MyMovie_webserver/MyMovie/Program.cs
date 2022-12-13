@@ -16,6 +16,11 @@ services.AddAuthentication()
     {
         twitterOptions.ConsumerKey = configuration["Authentication:Twitter:ConsumerAPIKey"];
         twitterOptions.ConsumerSecret = configuration["Authentication:Twitter:ConsumerSecret"];
+    })
+    .AddFacebook(facebookOptions =>
+    {
+    facebookOptions.AppId = configuration["Authentication:Facebook:AppId"];
+    facebookOptions.AppSecret = configuration["Authentication:Facebook:AppSecret"];
     });
 
 // Add services to the container.
@@ -27,9 +32,8 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
-
 var app = builder.Build();
-
+//dads
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
